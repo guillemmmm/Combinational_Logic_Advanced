@@ -12,8 +12,10 @@
 	localparam bitIn = 12;
 	localparam bitOut = 4;
 
-
-	//input Clk, Rst_n;
+`ifdef REG_IO
+	input Clk, Rst_n;
+`endif
+	
 	input [bitIn-1:0] DatIn_A;
 	output [bitOut-1:0] DatOut; //com estem fent log2 els bits maxims sera per 2**12-1 = 4095 -> 11 val maxim per tant 4 bits
 
@@ -31,8 +33,8 @@
 
 		always @(posedge Clk or negedge Rst_n) begin
 			if(~Rst_n) begin
-				regA <= 16'd0;
-				regRes <= 16'd0;
+				regA <= {bitIn{1'b0}};
+				regRes <= {bitOut{1'b0}};
 			end else begin
 				regA <= DatIn_A;
 				regRes <= res;
