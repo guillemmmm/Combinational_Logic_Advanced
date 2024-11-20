@@ -31,8 +31,8 @@
 
 		always @(posedge Clk or negedge Rst_n) begin
 			if(~Rst_n) begin
-				regA <= 16'd0;
-				regRes <= 16'd0;
+				regA <= {bitIn{1'b0}};
+				regRes <= {bitOut{1'b0}};
 			end else begin
 				regA <= DatIn_A;
 				regRes <= res;
